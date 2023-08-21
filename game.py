@@ -6,6 +6,7 @@ hint2 = ""
 hint3 = ""
 lives = 100
 current_level = -1
+failed_attempt = True
 
 
 #user guesses code
@@ -21,7 +22,7 @@ def validate_code(guess, actual):
     else:
         global lives
         lives -= 1
-        print(f"Wrong Code.{lives} Tries Remaining.")
+        print(f"Wrong Code. {lives} Tries Remaining.")
         
 # run_lvl  functions changes the state of the password, owner and hint information
 def run_lvl0():
@@ -62,8 +63,10 @@ def run_lvl2():
 
 #select the game stage / level
 def level_selector():
-    level = input("Attempt to crack a password? Y or Yes to Continue, any other input to Stop. ").upper()
-    if level == "Y" or level == "YES":
+    continue_play = input("Attempt to crack a password? Y or Yes to Continue, any other input to Stop. ").upper()
+    global failed_attempt
+    if  True == failed_attempt and continue_play == "Y" or continue_play == "YES":
+        print(f"Level up \nfail attempt state {failed_attempt}")
         global current_level
         current_level += 1
     
@@ -85,16 +88,20 @@ def game_state():
         game_on = False
 
 def game():
-    print(f"Welcome to password guesser \n you have {lives} to guess the password.")
+    print(f"Welcome to Password Guesser \nYou have {lives} tries to guess the password.")
     
     while game_on:
         level_selector()
         guess = guess_code()
         validate_code(guess, code)
         if guess != code:
-           continue
-    else:
-        level_selector()
+           global failed_attempt
+           failed_attempt = False
+           print("failed_attempt at password")
+           
+        else:
+         failed_attempt = True
+         level_selector()
         
 
 if __name__ == "__main__":
