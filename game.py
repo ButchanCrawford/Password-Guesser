@@ -13,7 +13,7 @@ successful_attempt = True
 def guess_code():
     
     guess_code = input("Enter Password: ")
-    print(f"guess the code input func ran {guess_code} was the guess")
+    # print(f"guess the code input func ran {guess_code} was the guess") #debug
     return guess_code
 
 #validate guess against actual code
@@ -67,24 +67,24 @@ def run_lvl2():
 
 #select the game stage / level
 def play_again():
-    print("play again func?")#debug
+    # print("play again func?")#debug
     continue_play = input("Attempt to crack a password? Y or Yes to Continue, any other input to Stop. ").upper()
-    print(f"continue play after input  {continue_play}") #debug #debug #debug
+    # print(f"continue play after input  {continue_play}") #debug #debug #debug
     global successful_attempt
     if  True == successful_attempt and continue_play == "Y" or continue_play == "YES":
-        print(f"Level up \nfail attempt state: {successful_attempt}")
+        # print(f"Level up \nfail attempt state: {successful_attempt}") #debug
         global current_level
         current_level += 1
     elif False == successful_attempt and continue_play == "Y" or continue_play == "YES":
-        print("goint to run level selector func")
+        print("Try Again") 
     elif continue_play != "Y" or continue_play != "YES":
         print("Password Guesser Stopped Running")
-        print(f"continue play when != Y YES:  {continue_play}") #debug #debug #debug
+        # print(f"continue play when != Y YES:  {continue_play}") #debug #debug #debug
         global game_on
         game_on = False
 
 def level_selector():
-    print("level selector")#debug
+    # print("level selector")#debug
     global game_on
     if current_level == 0 and game_on == True:
         run_lvl0()
@@ -106,24 +106,29 @@ def game_state():
 def game():
     print(f"Welcome to Password Guesser \nYou have {lives} tries to guess the password.")
     global game_on
+    global successful_attempt
     while game_on:
         print("WHILE LOOP RESTARTED")
-        play_again()
+        if successful_attempt == True:
+        #    print("if suc att == true ran ") debug
+           play_again()
+           
         if game_on:
+        #    print("if game on ran ") debug
            level_selector()
            guess = guess_code()
            validate_code(guess, code)
         if guess != code:
-           global successful_attempt
+        #    print("if guess != code ran ") #debug 
            successful_attempt = False
-           print("failed_attempt at password") 
+           print("Failed Attempt At Password") 
         
         elif guess == code and current_level >= 2:
-            
+            # print("if guess == code and current_level >= 2 ran ") debug
             game_on = False
             print("All Levels Completed")
         else:
-         print("success_attempt at password") #debug
+        #  print("success_attempt at password") #debug
          successful_attempt = True
        
 
