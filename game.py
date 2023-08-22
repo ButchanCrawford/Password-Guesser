@@ -109,9 +109,10 @@ def game():
     while game_on:
         print("WHILE LOOP RESTARTED")
         play_again()
-        level_selector()
-        guess = guess_code()
-        validate_code(guess, code)
+        if game_on:
+           level_selector()
+           guess = guess_code()
+           validate_code(guess, code)
         if guess != code:
            global successful_attempt
            successful_attempt = False
