@@ -24,19 +24,16 @@ def validate_code(guess, actual):
 def run_lvl0():
     global code
     code = "password1"
-    code = "1"
     print("///--Name: Tim Brown--///\n///--DOB: 08/15/2010--///\n///--Occupation: Learner--///\n")
 
 def run_lvl1():
     global code
     code = "oprahWIN$1954"
-    code = "1"
     print("///--Name: Oprah Winfrey--///\n///--DOB: 01/29/1954--///\n///--Occupation:Talk-show Host--///\n")
 
 def run_lvl2():
     global code
     code = "BUTwaitTHEREisMORE!"
-    code = "1"
     print("///--Name: Billy Mays--///\n///--DOB:6/20/1958--///\n///--Occupation: Salesman--///\n")
 
 #changes game level and game on state
