@@ -1,4 +1,3 @@
-# import random
 game_on = True
 code = ""
 lives = 100
@@ -6,10 +5,17 @@ current_level = -1
 successful_attempt = True
 
 
+def greeting():
+    print("//////////////////////////////////////////////////////")
+    print(f"/////     Welcome to Password Guesser - Hard    /////\n///// You have {lives} tries to guess the password. /////")
+    print("///// Spaces: N  | Special Character: Y Max of 1 ////")
+    print("///// Numbers: Y | Case Sensitivity Y:          ////")
+    print("////////////////////////////////////////////////////\n")
+
 #user guesses code
 def guess_code():
-    guess_code = input("Enter Password: ")
-    return guess_code
+    return  input("Enter Password: ")
+   
 
 #validate guess against actual code
 def validate_code(guess, actual):
@@ -28,7 +34,7 @@ def run_lvl0():
 
 def run_lvl1():
     global code
-    code = "oprahWIN$1954"
+    code = "OPRAHwin1954"
     print("///--Name: Oprah Winfrey--///\n///--DOB: 01/29/1954--///\n///--Occupation:Talk-show Host--///\n")
 
 def run_lvl2():
@@ -65,12 +71,7 @@ def level_selector():
 
 #runs the game
 def game():
-    print("//////////////////////////////////////////////////////")
-    print(f"/////     Welcome to Password Guesser - Hard    /////\n///// You have {lives} tries to guess the password. /////")
-    print("///// Spaces: N  | Special Character: Y Max of 1 ////")
-    print("///// Numbers: Y | Case Sensitivity Y:          ////")
-    print("////////////////////////////////////////////////////")
-
+    greeting()
 
     global game_on
     global successful_attempt
@@ -88,7 +89,6 @@ def game():
            validate_code(guess, code)
         if guess != code:
            successful_attempt = False
-           print("Failed Attempt At Password") 
         elif guess == code and current_level >= 2:
             game_on = False
             print("*****All Levels Completed. Congrats!!*****")
